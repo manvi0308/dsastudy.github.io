@@ -1,3 +1,5 @@
+let leetcodeQuestionsData = null; // Store fetched data globally
+
 // Function to fetch JSON data
 function fetchJSONData() {
     return fetch("./List.json")
@@ -13,18 +15,24 @@ function fetchJSONData() {
         });
 }
 
-// Main function that display all the questions list
+// Main function that displays all the questions list
 function displayList() {
-    fetchJSONData().then((leetcodeQuestionsData) => {
-        if (leetcodeQuestionsData) {
+    fetchJSONData().then((data) => {
+        if (data) {
+            leetcodeQuestionsData = data; // Store the data
             const questionsContainer = document.createElement("div");
 
             leetcodeQuestionsData.forEach(question => {
-                const ptag = document.createElement("p"); // Create a new <p> for each question
-                ptag.innerHTML = `${question.id}. ${question["Problem Name"]}`; // Set the inner HTML with question details
-                questionsContainer.appendChild(ptag); // Append the new <p> to the container
-                
-                // Fix: Use an anonymous function to call displayLeetcodeData
+                const itag = document.createElement("i");
+                itag.classList.add("fa-solid", "fa-caret-down");
+
+                const ptag = document.createElement("p");
+                ptag.appendChild(itag);
+                ptag.append(` ${question.id}. ${question["Problem Name"]}`);
+
+                questionsContainer.appendChild(ptag);
+
+                // Add click event listener
                 ptag.addEventListener("click", () => displayLeetcodeData(question.id));
             });
 
@@ -51,35 +59,38 @@ function fetchCode(url) {
 
 // Function to display the fetched data
 function displayLeetcodeData(id) {
-    fetchJSONData().then((data) => {
-        console.log("displayLeetcodeData called");
-        if (data) {
-            data.forEach((d) => {
-                if (d.id === id) {
-                    const detailContainer = document.createElement("div");
-                    const problemNameAndNumber = document.createElement("h3");
-                    const problemDescription = document.createElement("p");
-                    const code = document.createElement("pre");
-                    const insideCode = document.createElement("code");
-                    code.append(insideCode);
+    console.log("displayLeetcodeData called");
+    const existingDetailContainer = document.querySelector('.detail-container');
+    if (existingDetailContainer) {
+        existingDetailContainer.remove(); // Remove existing detail container if it exists
+    }
 
-                    problemNameAndNumber.innerText = `${d.id}. ${d["Problem Name"]}`; // Set problem name and number
-                    problemDescription.innerText = d.Description; // Set problem description
+    if (leetcodeQuestionsData) {
+        leetcodeQuestionsData.forEach((d) => {
+            if (d.id === id) {
+                const detailContainer = document.createElement("div");
+                detailContainer.classList.add("detail-container"); // Add a class for easy selection
+                
+                const problemNameAndNumber = document.createElement("h3");
+                const problemDescription = document.createElement("p");
+                const code = document.createElement("pre");
+                const insideCode = document.createElement("code");
 
-                    fetchCode(d.CodeLink).then(codeData => {
-                        if (codeData) {
-                            insideCode.innerText = codeData; // Set the code text here
-                        }
-                    });
+                problemNameAndNumber.innerText = `${d.id}. ${d["Problem Name"]}`; // Set problem name and number
+                problemDescription.innerText = d.Description; // Set problem description
 
-                    detailContainer.append(problemNameAndNumber);
-                    detailContainer.append(problemDescription);
-                    detailContainer.append(code);
-                    document.body.append(detailContainer);
-                }
-            });
-        }
-    });
+                fetchCode(d.CodeLink).then(codeData => {
+                    if (codeData) {
+                        insideCode.innerText = codeData; // Set the code text here
+                    }
+                });
+
+                code.appendChild(insideCode); // Append insideCode to code
+                detailContainer.append(problemNameAndNumber, problemDescription, code);
+                document.body.append(detailContainer);
+            }
+        });
+    }
 }
 
 displayList();
