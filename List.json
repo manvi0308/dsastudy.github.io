@@ -7,7 +7,7 @@
         "NotesLink": "https://example.com/notes/two-sum" 
     },{
         "id": 2,
-        "Problem Name": "Two Sum",
+        "Problem Name": "Three Sum",
         "Description": "Given an array of integers, return indices of the two numbers such that they add up to a specific target.",
         "CodeLink": "https://raw.githubusercontent.com/manvi0308/DSAStudy/main/SlidingWindow/Problem1652.java",
         "NotesLink": "https://example.com/notes/two-sum"
