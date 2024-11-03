@@ -1,0 +1,9 @@
+.show-block{
+    display: block;
+    border: 1px solid black;
+    background-color: rgb(251, 239, 239);
+}
+
+.hide-block{
+    display: none;
+}
