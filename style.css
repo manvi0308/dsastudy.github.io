@@ -1,9 +1,61 @@
-.show-block{
-    display: block;
-    border: 1px solid black;
-    background-color: rgb(251, 239, 239);
+body {
+    background-color: #f5f5dc; /* Beige background */
+    font-family: Arial, sans-serif; /* Font style */
+    margin: 0;
+    padding: 20px;
 }
 
-.hide-block{
-    display: none;
+h3 {
+    margin: 0;
+    color: #333; /* Darker text for headings */
+}
+
+p {
+    margin: 5px 0; /* Spacing for paragraphs */
+    color: #555; /* Slightly lighter text for paragraphs */
+}
+
+div {
+    margin-bottom: 20px; /* Spacing between question blocks */
+}
+
+.questions-container {
+    max-width: 600px; /* Limit the width of the questions container */
+    margin: 0 auto; /* Center the container */
+    padding: 10px;
+    background-color: #fff; /* White background for questions */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.questions-container p {
+    cursor: pointer; /* Pointer cursor for clickable items */
+    padding: 10px; /* Padding for clickable items */
+    border: 1px solid transparent; /* Initial border */
+    border-radius: 4px; /* Rounded corners for clickable items */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+}
+
+.questions-container p:hover {
+    background-color: #e8e8e8; /* Light gray background on hover */
+    border-color: #ccc; /* Border color on hover */
+}
+
+.detail-container {
+    margin-top: 20px; /* Spacing above detail container */
+    padding: 15px; /* Padding inside detail container */
+    background-color: #f9f9f9; /* Very light background for detail */
+    border: 1px solid #ccc; /* Border around detail container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+pre {
+    background-color: #f0f0f0; /* Light background for code block */
+    border: 1px solid #ccc; /* Border around code block */
+    border-radius: 4px; /* Rounded corners for code block */
+    padding: 10px; /* Padding inside code block */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    white-space: pre-wrap; /* Wrap long lines */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
 }
