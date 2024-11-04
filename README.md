@@ -40,5 +40,5 @@ There are several exciting features I plan to implement in the future:
 - Dark Mode: Implement a dark mode toggle for better accessibility. 🌙
 
 
-##🤝 Contributing
+## 🤝 Contributing
 Contributions are welcome! If you'd like to improve the project, feel free to fork the repository and submit a pull request. For larger changes, please open an issue to discuss what you’d like to work on. 💪
